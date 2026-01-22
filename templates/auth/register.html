@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - RSIB</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#172554',
+                        },
+                        cream: '#FAFBFC',
+                        charcoal: '#0F172A',
+                        slate: '#334155',
+                    },
+                    fontFamily: {
+                        sans: ['Sora', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Sora', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .gradient-dark {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-slideDown {
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .gradient-mesh {
+            background: 
+                radial-gradient(at 40% 20%, rgba(59, 130, 246, 0.3) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(96, 165, 250, 0.2) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(37, 99, 235, 0.2) 0px, transparent 50%);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6, #2563eb);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="h-full antialiased bg-cream">
+    
+    <!-- Flash Messages -->
+    {% if messages %}
+    <div class="fixed top-4 right-4 z-50 space-y-2 max-w-md">
+        {% for message in messages %}
+        <div class="animate-slideDown bg-white rounded-xl shadow-xl border-l-4 
+                    {% if message.tags == 'success' %}border-emerald-500{% elif message.tags == 'error' %}border-blue-500{% elif message.tags == 'warning' %}border-amber-500{% else %}border-primary-500{% endif %} 
+                    p-4 flex items-start space-x-3">
+            <div class="flex-shrink-0">
+                {% if message.tags == 'success' %}
+                <i class="fas fa-check-circle text-emerald-500 text-xl"></i>
+                {% elif message.tags == 'error' %}
+                <i class="fas fa-times-circle text-blue-500 text-xl"></i>
+                {% elif message.tags == 'warning' %}
+                <i class="fas fa-exclamation-triangle text-amber-500 text-xl"></i>
+                {% else %}
+                <i class="fas fa-info-circle text-primary-500 text-xl"></i>
+                {% endif %}
+            </div>
+            <div class="flex-1">
+                <p class="text-sm font-medium text-charcoal">{{ message }}</p>
+            </div>
+            <button type="button" class="flex-shrink-0 text-slate/50 hover:text-slate" onclick="this.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl w-full flex rounded-3xl shadow-2xl overflow-hidden bg-white">
+        <!-- Left Side - Form -->
+        <div class="w-full lg:w-1/2 p-8 sm:p-12 max-h-[90vh] overflow-y-auto">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3 mb-8">
+                <img class="w-45" id="logo" src="https://res.cloudinary.com/dulduri72/image/upload/v1769091523/ROYAL_shore_cqtrat.png" alt="">
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-charcoal mb-2">Create your account</h2>
+                <p class="text-slate/70">Join thousands of satisfied users on our platform</p>
+            </div>
+
+            <form method="post" class="space-y-5">
+                {% csrf_token %}
+                
+                <!-- Name Fields -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-2">
+                            <i class="fas fa-user text-primary-500 mr-2"></i>First Name
+                        </label>
+                        {{ form.first_name }}
+                        {% if form.first_name.errors %}
+                            <p class="mt-1 text-sm text-blue-600">{{ form.first_name.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-2">Last Name</label>
+                        {{ form.last_name }}
+                        {% if form.last_name.errors %}
+                            <p class="mt-1 text-sm text-blue-600">{{ form.last_name.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-sm font-semibold text-charcoal mb-2">
+                        <i class="fas fa-envelope text-primary-500 mr-2"></i>Email Address
+                    </label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <p class="mt-1 text-sm text-blue-600">{{ form.email.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label class="block text-sm font-semibold text-charcoal mb-2">
+                        <i class="fas fa-phone text-primary-500 mr-2"></i>Phone Number
+                    </label>
+                    {{ form.phone_number }}
+                    {% if form.phone_number.errors %}
+                        <p class="mt-1 text-sm text-blue-600">{{ form.phone_number.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Date of Birth & Gender -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-2">
+                            <i class="fas fa-calendar text-primary-500 mr-2"></i>Date of Birth
+                        </label>
+                        {{ form.date_of_birth }}
+                        {% if form.date_of_birth.errors %}
+                            <p class="mt-1 text-sm text-blue-600">{{ form.date_of_birth.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-2">Gender</label>
+                        {{ form.gender }}
+                        {% if form.gender.errors %}
+                            <p class="mt-1 text-sm text-blue-600">{{ form.gender.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Address -->
+                <div>
+                    <label class="block text-sm font-semibold text-charcoal mb-2">
+                        <i class="fas fa-map-marker-alt text-primary-500 mr-2"></i>Street Address
+                    </label>
+                    {{ form.address }}
+                    {% if form.address.errors %}
+                        <p class="mt-1 text-sm text-blue-600">{{ form.address.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- City, State, Postal Code -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-2">City</label>
+                        {{ form.city }}
+                        {% if form.city.errors %}
+                            <p class="mt-1 text-sm text-blue-600">{{ form.city.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-2">State</label>
+                        {{ form.state }}
+                        {% if form.state.errors %}
+                            <p class="mt-1 text-sm text-blue-600">{{ form.state.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-2">Postal Code</label>
+                        {{ form.postal_code }}
+                        {% if form.postal_code.errors %}
+                            <p class="mt-1 text-sm text-blue-600">{{ form.postal_code.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Country -->
+                <div>
+                    <label class="block text-sm font-semibold text-charcoal mb-2">
+                        <i class="fas fa-globe text-primary-500 mr-2"></i>Country
+                    </label>
+                    {{ form.country }}
+                    {% if form.country.errors %}
+                        <p class="mt-1 text-sm text-blue-600">{{ form.country.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Passwords -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-2">
+                            <i class="fas fa-lock text-primary-500 mr-2"></i>Password
+                        </label>
+                        {{ form.password1 }}
+                        {% if form.password1.errors %}
+                            <p class="mt-1 text-sm text-blue-600">{{ form.password1.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-2">Confirm Password</label>
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                            <p class="mt-1 text-sm text-blue-600">{{ form.password2.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Referral Code (Optional) -->
+                <div>
+                    <label class="block text-sm font-semibold text-charcoal mb-2">
+                        <i class="fas fa-gift text-primary-500 mr-2"></i>Referral Code (Optional)
+                    </label>
+                    {{ form.referral_code }}
+                    {% if form.referral_code.errors %}
+                        <p class="mt-1 text-sm text-blue-600">{{ form.referral_code.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                
+
+                <!-- Submit Button -->
+                <button type="submit" class="group w-full gradient-primary text-white py-3.5 px-6 rounded-xl font-semibold shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-2">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Create Account</span>
+                    <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                </button>
+
+                <!-- Login Link -->
+                <div class="text-center pt-4">
+                    <p class="text-sm text-slate/70">
+                        Already have an account? 
+                        <a href="{% url 'login' %}" class="font-semibold text-primary-600 hover:text-primary-700 transition-colors">Sign in here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Right Side - Image/Info -->
+        <div class="hidden lg:block lg:w-1/2 gradient-dark p-12 text-white relative overflow-hidden">
+            <!-- Background decorations -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-primary-400 rounded-full opacity-10 -mr-48 -mt-48 animate-float"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary-600 rounded-full opacity-10 -ml-48 -mb-48"></div>
+            <div class="absolute inset-0 gradient-mesh opacity-50"></div>
+            
+            <div class="relative z-10 h-full flex flex-col justify-center">
+                <h2 class="text-4xl font-bold mb-6">Welcome to RSIB</h2>
+                <p class="text-lg mb-8 text-primary-100">Experience a platform that puts you first. Secure, reliable, and accessible.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center border border-white/10">
+                            <i class="fas fa-shield-alt text-2xl text-primary-300"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1">Enterprise-Grade Security</h3>
+                            <p class="text-primary-200 text-sm">Your data is protected with industry-leading encryption</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center border border-white/10">
+                            <i class="fas fa-clock text-2xl text-primary-300"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1">24/7 Support</h3>
+                            <p class="text-primary-200 text-sm">Round-the-clock assistance whenever you need it</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center border border-white/10">
+                            <i class="fas fa-mobile-alt text-2xl text-primary-300"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1">Easy Access</h3>
+                            <p class="text-primary-200 text-sm">Manage your assets from anywhere, anytime</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-white/10">
+                    <p class="text-sm text-primary-200">Trusted by over 500,000+ users worldwide</p>
+                    <div class="flex items-center space-x-2 mt-3">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 border-2 border-white/30"></div>
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-violet-400 to-violet-600 border-2 border-white/30"></div>
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 border-2 border-white/30"></div>
+                        </div>
+                        <div class="flex items-center text-amber-300">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="ml-2 text-white text-sm font-medium">4.9/5.0 Rating</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom form styling */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    input[type="number"],
+    input[type="tel"],
+    select,
+    textarea {
+        @apply w-full px-4 py-2.5 border border-slate/20 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 text-charcoal bg-cream/50;
+    }
+    
+    input[type="checkbox"] {
+        @apply w-4 h-4 text-primary-600 border-slate/30 rounded focus:ring-primary-500 cursor-pointer;
+    }
+    
+    textarea {
+        @apply resize-none;
+    }
+    
+    select {
+        @apply appearance-none bg-white cursor-pointer;
+    }
+</style>
+
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+</body>
+</html>
