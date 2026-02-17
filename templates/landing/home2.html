@@ -307,6 +307,25 @@
       .counter {
         font-variant-numeric: tabular-nums;
       }
+
+      /* Mobile responsive fixes */
+      @media (max-width: 640px) {
+        .text-3xl { font-size: 1.25rem !important; line-height: 1.75rem !important; }
+        .text-2xl { font-size: 1.125rem !important; line-height: 1.5rem !important; }
+        .text-xl { font-size: 1rem !important; line-height: 1.5rem !important; }
+        .text-lg { font-size: 0.938rem !important; line-height: 1.375rem !important; }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+          font-size: 16px !important;
+        }
+
+        .p-8 { padding: 1.25rem !important; }
+        .p-12 { padding: 1.5rem !important; }
+        .px-8 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+        .gap-8 { gap: 1.25rem !important; }
+      }
     </style>
   </head>
   <body class="font-sans antialiased bg-cream text-charcoal overflow-x-hidden">

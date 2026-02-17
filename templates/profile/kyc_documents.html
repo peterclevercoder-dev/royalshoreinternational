@@ -15,7 +15,7 @@
         <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
             <i class="fas fa-id-card text-white text-2xl"></i>
         </div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">KYC Verification</h1>
+        <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">KYC Verification</h1>
         <p class="text-gray-600">Upload your identity documents for verification</p>
     </div>
 
@@ -75,7 +75,7 @@
         {% endif %}
 
         <!-- Government ID Information -->
-        <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-8">
             <h3 class="text-lg font-bold text-gray-900 mb-6">Government ID Information</h3>
 
             <div class="space-y-6">
@@ -118,7 +118,7 @@
         </div>
 
         <!-- ID Images Upload -->
-        <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-8">
             <h3 class="text-lg font-bold text-gray-900 mb-6">ID Images</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -141,7 +141,7 @@
                     {% endif %}
 
                     <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-400 transition-colors">
-                        <i class="fas fa-cloud-upload-alt text-gray-400 text-4xl mb-3"></i>
+                        <i class="fas fa-cloud-upload-alt text-gray-400 text-2xl sm:text-4xl mb-3"></i>
                         <div class="mb-3">
                             <label for="{{ form.front_id_image.id_for_label }}" class="cursor-pointer text-green-600 hover:text-green-700 font-medium">
                                 <span>Upload Front ID</span>
@@ -174,7 +174,7 @@
                     {% endif %}
 
                     <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-400 transition-colors">
-                        <i class="fas fa-cloud-upload-alt text-gray-400 text-4xl mb-3"></i>
+                        <i class="fas fa-cloud-upload-alt text-gray-400 text-2xl sm:text-4xl mb-3"></i>
                         <div class="mb-3">
                             <label for="{{ form.back_id_image.id_for_label }}" class="cursor-pointer text-green-600 hover:text-green-700 font-medium">
                                 <span>Upload Back ID</span>

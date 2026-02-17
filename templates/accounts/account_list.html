@@ -10,7 +10,7 @@
     <!-- Header with Action Button -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900 lg:hidden">My Accounts</h1>
+            <h1 class="text-lg sm:text-2xl font-bold text-gray-900 lg:hidden">My Accounts</h1>
             <p class="text-sm text-gray-600 mt-1">You have {{ accounts.count }} account{{ accounts.count|pluralize }}</p>
         </div>
         <a href="{% url 'account_apply' %}" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold shadow-lg hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-200">
@@ -25,11 +25,11 @@
         {% for account in accounts %}
         <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
             <!-- Account Header with Gradient -->
-            <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-3 sm:p-6 text-white">
                 <div class="flex items-start justify-between mb-4">
                     <div>
                         <p class="text-sm text-blue-100 mb-1">{{ account.get_account_type_display }}</p>
-                        <h3 class="text-2xl font-bold">{{ account.account_name|default:account.get_account_type_display }}</h3>
+                        <h3 class="text-lg sm:text-2xl font-bold">{{ account.account_name|default:account.get_account_type_display }}</h3>
                     </div>
                     <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
                         <i class="fas fa-wallet text-2xl"></i>
@@ -37,12 +37,12 @@
                 </div>
                 <div class="flex items-baseline space-x-2">
                     <span class="text-sm text-blue-100">Account Number:</span>
-                    <span class="text-lg font-mono font-semibold">{{ account.account_number }}</span>
+                    <span class="text-sm sm:text-lg font-mono font-semibold break-all">{{ account.account_number }}</span>
                 </div>
             </div>
 
             <!-- Account Details -->
-            <div class="p-6">
+            <div class="p-3 sm:p-6">
                 <!-- Balance Section -->
                 <div class="mb-6">
                     <div class="flex items-center justify-between mb-2">
@@ -55,7 +55,7 @@
                             {{ account.get_status_display }}
                         </span>
                     </div>
-                    <p class="text-3xl font-bold text-gray-900">{{ account.balance|currency }}</p>
+                    <p class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 break-all">{{ account.balance|currency }}</p>
                 </div>
 
                 <!-- Account Info Grid -->
@@ -121,27 +121,27 @@
     </div>
 
     <!-- Account Summary Card -->
-    <div class="bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-lg border border-gray-200 p-6">
+    <div class="bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-lg border border-gray-200 p-3 sm:p-6">
         <h3 class="text-lg font-bold text-gray-900 mb-4">Account Summary</h3>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div class="text-center sm:text-left">
                 <p class="text-sm text-gray-600 mb-1">Total Accounts</p>
-                <p class="text-2xl font-bold text-gray-900">{{ accounts.count }}</p>
+                <p class="text-lg sm:text-2xl font-bold break-all text-gray-900">{{ accounts.count }}</p>
             </div>
             <div class="text-center sm:text-left">
                 <p class="text-sm text-gray-600 mb-1">Combined Balance</p>
-                <p class="text-2xl font-bold text-green-600">{{ user.get_total_balance|currency }}</p>
+                <p class="text-lg sm:text-2xl font-bold break-all text-green-600">{{ user.get_total_balance|currency }}</p>
             </div>
             <div class="text-center sm:text-left">
                 <p class="text-sm text-gray-600 mb-1">Active Accounts</p>
-                <p class="text-2xl font-bold text-blue-600">{{ accounts|length }}</p>
+                <p class="text-lg sm:text-2xl font-bold break-all text-blue-600">{{ accounts|length }}</p>
             </div>
         </div>
     </div>
 
     {% else %}
     <!-- Empty State -->
-    <div class="bg-white rounded-xl shadow-lg border-2 border-dashed border-gray-300 p-12 text-center">
+    <div class="bg-white rounded-xl shadow-lg border-2 border-dashed border-gray-300 p-6 sm:p-12 text-center">
         <div class="max-w-md mx-auto">
             <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-wallet text-gray-400 text-3xl"></i>
@@ -157,7 +157,7 @@
     {% endif %}
 
     <!-- Account Types Info -->
-    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-3 sm:p-6">
         <h3 class="text-lg font-bold text-gray-900 mb-4">Available Account Types</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="p-4 bg-gradient-to-br from-blue-50 to-white rounded-lg border border-blue-200">

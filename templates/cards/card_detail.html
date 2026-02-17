@@ -20,7 +20,7 @@
                 {% if card.card_type == 'DEBIT' %}from-blue-600 to-blue-800
                 {% elif card.card_type == 'CREDIT' %}from-purple-600 to-purple-800
                 {% else %}from-gray-700 to-gray-900{% endif %}
-                rounded-2xl shadow-2xl p-6 text-white h-56 flex flex-col justify-between overflow-hidden relative">
+                rounded-2xl shadow-2xl p-4 sm:p-6 text-white h-56 flex flex-col justify-between overflow-hidden relative">
                 
                 <!-- Background Pattern -->
                 <div class="absolute inset-0 opacity-10">
@@ -42,8 +42,12 @@
                 </div>
 
                 <div class="relative z-10">
-                    <p class="text-2xl font-mono tracking-widest mb-4">
+                    <p class="text-sm sm:text-lg font-mono tracking-widest mb-4 break-all">
+                        {% if card.status == 'ACTIVE' %}
+                        {{ card.card_number|slice:":4" }} {{ card.card_number|slice:"4:8" }} {{ card.card_number|slice:"8:12" }} {{ card.card_number|slice:"12:" }}
+                        {% else %}
                         •••• •••• •••• {{ card.card_number|slice:"-4:" }}
+                        {% endif %}
                     </p>
                     <div class="flex items-end justify-between">
                         <div>
@@ -79,14 +83,6 @@
                 </a>
                 {% endif %}
 
-                {% if card.status == 'ACTIVE' %}
-                <button class="flex items-center justify-center w-full px-4 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors">
-                    <i class="fas fa-key mr-2"></i>Change PIN
-                </button>
-                <button class="flex items-center justify-center w-full px-4 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors">
-                    <i class="fas fa-sliders-h mr-2"></i>Set Limits
-                </button>
-                {% endif %}
             </div>
 
             <!-- Security Notice -->
@@ -118,7 +114,13 @@
                     <div class="space-y-4">
                         <div>
                             <p class="text-xs text-gray-500 mb-1">Card Number</p>
-                            <p class="text-sm font-mono font-semibold text-gray-900">•••• •••• •••• {{ card.card_number|slice:"-4:" }}</p>
+                            <p class="text-sm font-mono font-semibold text-gray-900">
+                                {% if card.status == 'ACTIVE' %}
+                                {{ card.card_number|slice:":4" }} {{ card.card_number|slice:"4:8" }} {{ card.card_number|slice:"8:12" }} {{ card.card_number|slice:"12:" }}
+                                {% else %}
+                                •••• •••• •••• {{ card.card_number|slice:"-4:" }}
+                                {% endif %}
+                            </p>
                         </div>
                         <div>
                             <p class="text-xs text-gray-500 mb-1">Card Type</p>
@@ -132,7 +134,9 @@
                         </div>
                         <div>
                             <p class="text-xs text-gray-500 mb-1">CVV</p>
-                            <p class="text-sm font-mono font-semibold text-gray-900">•••</p>
+                            <p class="text-sm font-mono font-semibold text-gray-900">
+                                {% if card.status == 'ACTIVE' %}{{ card.cvv }}{% else %}•••{% endif %}
+                            </p>
                         </div>
                     </div>
                     <div class="space-y-4">

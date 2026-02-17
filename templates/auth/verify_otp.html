@@ -69,6 +69,18 @@
         .animate-slideDown {
             animation: slideDown 0.3s ease-out;
         }
+
+        /* Mobile responsive */
+        @media (max-width: 640px) {
+            .text-3xl { font-size: 1.25rem !important; }
+            .text-2xl { font-size: 1.125rem !important; }
+
+            input[type="text"] {
+                font-size: 16px !important;
+            }
+
+            body, html { overflow-x: hidden; }
+        }
     </style>
 </head>
 <body class="h-full antialiased bg-gray-50">
@@ -103,17 +115,17 @@
     {% endif %}
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 via-white to-blue-50">
     <div class="max-w-md w-full">
-        <div class="bg-white rounded-2xl shadow-2xl p-8 sm:p-12">
+        <div class="bg-white rounded-2xl shadow-2xl p-5 sm:p-8 lg:p-12">
             <!-- Icon -->
             <div class="flex justify-center mb-6">
                 <div class="w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                    <i class="fas fa-shield-alt text-white text-3xl"></i>
+                    <i class="fas fa-shield-alt text-white text-xl sm:text-2xl lg:text-3xl"></i>
                 </div>
             </div>
 
             <!-- Header -->
             <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Two-Factor Authentication</h2>
+                <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Two-Factor Authentication</h2>
                 <p class="text-gray-600">We've sent a verification code to your {{ user.two_factor_method|lower }}</p>
                 <p class="text-sm text-gray-500 mt-2">{{ user.email }}</p>
             </div>
@@ -128,7 +140,7 @@
                     </label>
                     
                     <!-- OTP Input -->
-                    <div x-data="otpInput()" class="flex justify-center space-x-3 mb-4">
+                    <div x-data="otpInput()" class="flex justify-center space-x-1.5 sm:space-x-3 mb-4">
                         <template x-for="(digit, index) in 6" :key="index">
                             <input
                                 type="text"
@@ -137,7 +149,7 @@
                                 @input="handleInput(index, $event)"
                                 @keydown="handleKeydown(index, $event)"
                                 @paste="handlePaste($event)"
-                                class="w-12 h-14 text-center text-2xl font-bold border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+                                class="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl sm:text-2xl font-bold border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
                             />
                         </template>
                     </div>

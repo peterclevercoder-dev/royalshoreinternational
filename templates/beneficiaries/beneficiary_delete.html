@@ -13,18 +13,18 @@
     <!-- Warning Card -->
     <div class="bg-white rounded-xl shadow-lg border-2 border-blue-300 overflow-hidden">
         <!-- Header -->
-        <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white text-center">
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-4 sm:p-6 text-white text-center">
             <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-exclamation-triangle text-white text-2xl"></i>
             </div>
-            <h1 class="text-2xl font-bold mb-2">Delete Beneficiary</h1>
+            <h1 class="text-lg sm:text-2xl font-bold mb-2">Delete Beneficiary</h1>
             <p class="text-blue-100">This action cannot be undone</p>
         </div>
 
         <!-- Body -->
-        <div class="p-8">
+        <div class="p-4 sm:p-8">
             <!-- Beneficiary Info -->
-            <div class="bg-gray-50 rounded-lg p-6 mb-6">
+            <div class="bg-gray-50 rounded-lg p-3 sm:p-6 mb-6">
                 <p class="text-sm text-gray-600 mb-4">You are about to delete:</p>
                 <div class="space-y-3">
                     <div class="flex items-center space-x-3">
@@ -32,7 +32,7 @@
                             <i class="fas fa-user text-blue-600 text-xl"></i>
                         </div>
                         <div>
-                            <p class="font-bold text-gray-900 text-lg">{{ beneficiary.nickname|default:beneficiary.account_name }}</p>
+                            <p class="font-bold text-gray-900 text-lg break-all">{{ beneficiary.nickname|default:beneficiary.account_name }}</p>
                             {% if beneficiary.nickname %}
                             <p class="text-sm text-gray-600">{{ beneficiary.account_name }}</p>
                             {% endif %}
@@ -42,16 +42,16 @@
                     <div class="pt-3 border-t border-gray-200 space-y-2">
                         <div class="flex justify-between text-sm">
                             <span class="text-gray-600">Account Number:</span>
-                            <span class="font-mono font-semibold text-gray-900">{{ beneficiary.account_number }}</span>
+                            <span class="font-mono font-semibold text-gray-900 break-all">{{ beneficiary.account_number }}</span>
                         </div>
                         <div class="flex justify-between text-sm">
                             <span class="text-gray-600">Bank:</span>
-                            <span class="font-semibold text-gray-900">{{ beneficiary.bank_name }}</span>
+                            <span class="font-semibold text-gray-900 break-all">{{ beneficiary.bank_name }}</span>
                         </div>
                         {% if beneficiary.email %}
                         <div class="flex justify-between text-sm">
                             <span class="text-gray-600">Email:</span>
-                            <span class="font-semibold text-gray-900">{{ beneficiary.email }}</span>
+                            <span class="font-semibold text-gray-900 break-all">{{ beneficiary.email }}</span>
                         </div>
                         {% endif %}
                     </div>
@@ -106,7 +106,7 @@
     </div>
 
     <!-- Alternative Actions -->
-    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-6">
         <div class="flex items-start space-x-3">
             <i class="fas fa-lightbulb text-blue-600 text-xl mt-0.5"></i>
             <div class="flex-1">

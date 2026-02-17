@@ -98,12 +98,38 @@
         }
         
         .gradient-mesh {
-            background: 
+            background:
                 radial-gradient(at 40% 20%, rgba(59, 130, 246, 0.3) 0px, transparent 50%),
                 radial-gradient(at 80% 0%, rgba(96, 165, 250, 0.2) 0px, transparent 50%),
                 radial-gradient(at 0% 50%, rgba(37, 99, 235, 0.2) 0px, transparent 50%);
         }
-        
+
+        /* Mobile responsive */
+        @media (max-width: 640px) {
+            .text-4xl { font-size: 1.5rem !important; }
+            .text-3xl { font-size: 1.25rem !important; }
+            .text-2xl { font-size: 1.125rem !important; }
+            .text-xl { font-size: 1rem !important; }
+            .text-lg { font-size: 0.938rem !important; }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="date"],
+            input[type="number"],
+            input[type="tel"],
+            select,
+            textarea {
+                font-size: 16px !important;
+                padding: 0.5rem 0.75rem !important;
+            }
+
+            .p-8, .sm\:p-12 { padding: 1.25rem !important; }
+
+            body, html { overflow-x: hidden; }
+            * { max-width: 100vw; }
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
@@ -153,14 +179,14 @@
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl w-full flex rounded-3xl shadow-2xl overflow-hidden bg-white">
         <!-- Left Side - Form -->
-        <div class="w-full lg:w-1/2 p-8 sm:p-12 max-h-[90vh] overflow-y-auto">
+        <div class="w-full lg:w-1/2 p-5 sm:p-8 lg:p-12 max-h-[90vh] overflow-y-auto">
             <!-- Logo -->
             <div class="flex items-center space-x-3 mb-8">
                 <img class="w-45" id="logo" src="https://res.cloudinary.com/dulduri72/image/upload/v1769091523/ROYAL_shore_cqtrat.png" alt="">
             </div>
 
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-charcoal mb-2">Create your account</h2>
+                <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-charcoal mb-2">Create your account</h2>
                 <p class="text-slate/70">Join thousands of satisfied users on our platform</p>
             </div>
 

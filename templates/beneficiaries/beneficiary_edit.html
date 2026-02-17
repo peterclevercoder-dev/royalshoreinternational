@@ -15,13 +15,13 @@
         <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
             <i class="fas fa-user-edit text-white text-2xl"></i>
         </div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">Edit Beneficiary</h1>
+        <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Edit Beneficiary</h1>
         <p class="text-gray-600">Update {{ beneficiary.nickname|default:beneficiary.account_name }}'s information</p>
     </div>
 
     <!-- Show Form Errors -->
     {% if form.errors %}
-    <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+    <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-3 sm:p-6">
         <div class="flex items-start space-x-3">
             <i class="fas fa-exclamation-triangle text-blue-600 text-2xl mt-0.5"></i>
             <div class="flex-1">
@@ -46,12 +46,12 @@
     {% endif %}
 
     <!-- Edit Beneficiary Form -->
-    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-8">
         <h2 class="text-xl font-bold text-gray-900 mb-6">Beneficiary Information</h2>
-        
+
         <form method="post" class="space-y-6">
             {% csrf_token %}
-            
+
             <!-- Nickname -->
             <div>
                 <label for="{{ form.nickname.id_for_label }}" class="block text-sm font-semibold text-gray-700 mb-2">
@@ -150,7 +150,7 @@
     </div>
 
     <!-- Danger Zone -->
-    <div class="bg-white rounded-xl shadow-lg border-2 border-blue-200 p-6">
+    <div class="bg-white rounded-xl shadow-lg border-2 border-blue-200 p-3 sm:p-6">
         <h3 class="text-lg font-bold text-blue-900 mb-2">Danger Zone</h3>
         <p class="text-sm text-gray-600 mb-4">Once you delete a beneficiary, there is no going back. Please be certain.</p>
         <a href="{% url 'beneficiary_delete' beneficiary.id %}" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">

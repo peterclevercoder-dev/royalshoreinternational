@@ -154,6 +154,145 @@
       .nav-item-active:hover span {
         color: white !important;
       }
+
+      /* ===== GLOBAL RESPONSIVE STYLES ===== */
+
+      /* Mobile-first responsive font scaling */
+      @media (max-width: 640px) {
+        /* Scale down large headings on mobile */
+        .text-4xl { font-size: 1.5rem !important; line-height: 2rem !important; }
+        .text-3xl { font-size: 1.25rem !important; line-height: 1.75rem !important; }
+        .text-2xl { font-size: 1.125rem !important; line-height: 1.5rem !important; }
+        .text-xl { font-size: 1rem !important; line-height: 1.5rem !important; }
+        .text-lg { font-size: 0.938rem !important; line-height: 1.375rem !important; }
+
+        /* Scale down large icon text inside elements */
+        .text-6xl { font-size: 2.5rem !important; }
+        .text-5xl { font-size: 2rem !important; }
+        .text-8xl { font-size: 3.5rem !important; }
+
+        /* Responsive form inputs */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="url"],
+        select,
+        textarea {
+          font-size: 16px !important; /* Prevents iOS zoom on focus */
+          padding: 0.625rem 0.75rem !important;
+        }
+
+        /* Responsive buttons */
+        button, .btn, [type="submit"] {
+          font-size: 0.875rem !important;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+        }
+
+        /* Responsive padding for cards/sections */
+        .p-6 { padding: 1rem !important; }
+        .p-8 { padding: 1.25rem !important; }
+        .p-12 { padding: 1.5rem !important; }
+        .px-6 { padding-left: 1rem !important; padding-right: 1rem !important; }
+        .px-8 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+        .py-12 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+
+        /* Responsive margins */
+        .mb-8 { margin-bottom: 1.25rem !important; }
+        .mb-12 { margin-bottom: 1.5rem !important; }
+        .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+          --tw-space-y-reverse: 0;
+          margin-top: 1rem;
+        }
+        .gap-6 { gap: 1rem !important; }
+        .gap-8 { gap: 1.25rem !important; }
+
+        /* Prevent horizontal overflow */
+        body, html {
+          overflow-x: hidden;
+        }
+
+        /* Responsive tables - make them scrollable */
+        table {
+          display: block;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        /* Responsive font-mono (account numbers, card numbers) */
+        .font-mono {
+          font-size: 0.813rem !important;
+          word-break: break-all;
+        }
+
+        /* Ensure images don't overflow */
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        /* Responsive stat/balance numbers */
+        .text-3xl.font-bold,
+        .text-2xl.font-bold {
+          font-size: 1.25rem !important;
+          line-height: 1.75rem !important;
+        }
+
+        /* Mobile card grid fixes */
+        .grid-cols-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        /* Fix flex wrapping on small screens */
+        .flex.items-center.justify-between {
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        /* Ensure modals are mobile-friendly */
+        .max-w-md, .max-w-lg, .max-w-xl, .max-w-2xl, .max-w-4xl, .max-w-5xl, .max-w-6xl {
+          max-width: 100% !important;
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+        }
+
+        /* Fix mobile top bar content area offset */
+        .pt-20 {
+          padding-top: 4.5rem !important;
+        }
+      }
+
+      /* Tablet adjustments */
+      @media (min-width: 641px) and (max-width: 1023px) {
+        .text-4xl { font-size: 1.875rem !important; }
+        .text-3xl { font-size: 1.5rem !important; }
+
+        .p-12 { padding: 2rem !important; }
+        .p-8 { padding: 1.5rem !important; }
+      }
+
+      /* Ensure all containers respect viewport */
+      * {
+        max-width: 100vw;
+      }
+
+      /* Fix for long text overflow */
+      .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* Responsive grid helper - stack on mobile */
+      @media (max-width: 640px) {
+        .grid.grid-cols-3:not(.sm\:grid-cols-3),
+        .grid.grid-cols-4:not(.sm\:grid-cols-4) {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+      }
     </style>
 
     {% block extra_css %}{% endblock %}
