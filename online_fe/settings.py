@@ -235,7 +235,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:3001",
-    # Add your production frontend URL here
+    # Add production frontend URL here
+    'https://royalshoreinternational.vercel.app',
+    'https://www.royalshoreinternational.com',
 ]
 
 # ✅ CRITICAL: Allow credentials (cookies)
@@ -308,7 +310,9 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
-    # Add your production URLs here
+    # Add production URLs here
+    'https://royalshoreinternational.vercel.app',
+    'https://www.royalshoreinternational.com',
 ]
 
 # Content Security Policy
